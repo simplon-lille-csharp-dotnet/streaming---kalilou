@@ -1,12 +1,13 @@
 --Création de la base de données
 CREATE movies;
+
 --Création des tables
 CREATE TABLE utilisateurs (user_id INT PRIMARY KEY NOT NULL, email VARCHAR(100) NOT Null, password VARCHAR(100) NOT NULL);
 CREATE TABLE films (id INT PRIMARY KEY NOT NULL, titre VARCHAR(100) NOT Null, duree INT NOT NULL, annee INT NOT NULL);
 CREATE TABLE acteurs (acteur_id INT PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT Null, prenom VARCHAR(100) NOT NULL, date_de_naissance DATETIME NOT NULL);
 CREATE TABLE realisateurs (realisateur_id INT PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT Null, prenom VARCHAR(100) NOT NULL);
---Création des clés étrangères
 
+--Création des clés étrangères
 ALTER TABLE Films ADD COLUMN acteur_id INT
 ALTER TABLE Films ADD COLUMN realisateur_id INT
 ALTER TABLE Films ADD CONSTRAINT fk_acteur FOREIGN KEY (acteur_id) REFERENCES Acteurs(acteur_id)
@@ -23,6 +24,7 @@ INSERT INTO Réalisateurs (réalisateur_id, nom, prénom) VALUES
     (7, 'Spielberg', 'Steven'),
     (8, 'Coppola', 'Francis Ford'),
     (9, 'Cameron', 'James');
+
 --Insertion des films
 INSERT INTO films (id, titre, realisateur_id, duree, annee) VALUES
     (1,'Inception', 1, 148, 2010),
@@ -35,6 +37,7 @@ INSERT INTO films (id, titre, realisateur_id, duree, annee) VALUES
     (8,'Jurassic Park', 7, 127, 1993),
     (9,'The Godfather', 8, 175, 1972),
     (10,'Avatar', 9, 162, 2009);
+
 --Insertion des acteurs
 INSERT INTO Acteurs (nom, prenom, date_de_naissance, acteur_id) VALUES
     ('DiCaprio', 'Leonardo', '1974-11-11', 1),
@@ -46,6 +49,7 @@ INSERT INTO Acteurs (nom, prenom, date_de_naissance, acteur_id) VALUES
     ('Neill', 'Sam', '1947-09-14', 8),
     ('Brando', 'Marlon', '1924-04-03', 9),
     ('Worthington', 'Sam', '1976-08-02', 10);
+
 --Insertion des utilisateurs
 INSERT INTO Utilisateurs (user_id, email, password) VALUES
     (1, 'admin@example.com', 'motdepasse1'),  -- Admin
@@ -63,3 +67,31 @@ INSERT INTO Utilisateurs (user_id, email, password) VALUES
     (13, 'amy.wilson@yahoo.com', 'secretword13'),
     (14, 'ryan.evans@gmail.com', 'mypassword14'),
     (15, 'jessica.moore@yahoo.com', 'strongpassword15');
+
+-- Création des tables jointes
+CREATE TABLE performances (
+    role_id INT PRIMARY KEY AUTO_INCREMENT,
+    acteur_id INT,
+    film_id INT,
+    role_principal BOOL,
+    role VARCHAR(100) NOT NULL,
+    FOREIGN KEY (acteur_id) REFERENCES acteurs(acteur_id),
+    FOREIGN KEY (film_id) REFERENCES films(id)
+);
+
+CREATE TABLE realisation (
+    film_realisateur_id INT PRIMARY KEY AUTO_INCREMENT,
+    realisateur_id INT,
+    film_id INT,
+    FOREIGN KEY (realisateur_id) REFERENCES realisateurs(realisateur_id),
+    FOREIGN KEY (film_id) REFERENCES films(id)
+);
+
+CREATE TABLE favoris_utilisateurs (
+    favori_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    film_id INT,
+    FOREIGN KEY (user_id) REFERENCES utilisateurs(user_id),
+    FOREIGN KEY (film_id) REFERENCES films(id)
+);
+
