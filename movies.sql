@@ -63,4 +63,3 @@ INSERT INTO Utilisateurs (user_id, email, password) VALUES
     (13, 'amy.wilson@yahoo.com', 'secretword13'),
     (14, 'ryan.evans@gmail.com', 'mypassword14'),
     (15, 'jessica.moore@yahoo.com', 'strongpassword15');
-
