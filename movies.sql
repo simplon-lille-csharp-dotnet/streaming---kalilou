@@ -70,7 +70,6 @@ INSERT INTO Utilisateurs (user_id, email, password) VALUES
 
 -- Création des tables jointes
 CREATE TABLE performances (
-    role_id INT PRIMARY KEY AUTO_INCREMENT,
     acteur_id INT,
     film_id INT,
     role_principal BOOL,
@@ -80,7 +79,6 @@ CREATE TABLE performances (
 );
 
 CREATE TABLE realisation (
-    film_realisateur_id INT PRIMARY KEY AUTO_INCREMENT,
     realisateur_id INT,
     film_id INT,
     FOREIGN KEY (realisateur_id) REFERENCES realisateurs(realisateur_id),
@@ -88,7 +86,6 @@ CREATE TABLE realisation (
 );
 
 CREATE TABLE favoris_utilisateurs (
-    favori_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     film_id INT,
     FOREIGN KEY (user_id) REFERENCES utilisateurs(user_id),
