@@ -1,7 +1,7 @@
 --Création de la base de données
 CREATE movies;
 --Création des tables
-CREATE TABLE utilisateurs (id INT PRIMARY KEY NOT NULL, email VARCHAR(100) NOT Null, password VARCHAR(100) NOT NULL);
+CREATE TABLE utilisateurs (user_id INT PRIMARY KEY NOT NULL, email VARCHAR(100) NOT Null, password VARCHAR(100) NOT NULL);
 CREATE TABLE films (id INT PRIMARY KEY NOT NULL, titre VARCHAR(100) NOT Null, duree INT NOT NULL, annee INT NOT NULL);
 CREATE TABLE acteurs (acteur_id INT PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT Null, prenom VARCHAR(100) NOT NULL, date_de_naissance DATETIME NOT NULL);
 CREATE TABLE realisateurs (realisateur_id INT PRIMARY KEY NOT NULL, nom VARCHAR(100) NOT Null, prenom VARCHAR(100) NOT NULL);
@@ -35,3 +35,32 @@ INSERT INTO films (id, titre, realisateur_id, duree, annee) VALUES
     (8,'Jurassic Park', 7, 127, 1993),
     (9,'The Godfather', 8, 175, 1972),
     (10,'Avatar', 9, 162, 2009);
+--Insertion des acteurs
+INSERT INTO Acteurs (nom, prenom, date_de_naissance, acteur_id) VALUES
+    ('DiCaprio', 'Leonardo', '1974-11-11', 1),
+    ('Bale', 'Christian', '1974-01-30', 2),
+    ('Hanks', 'Tom', '1956-07-09', 3),
+    ('Travolta', 'John', '1954-02-18', 4),
+    ('Robbins', 'Tim', '1958-10-16', 5),
+    ('Reeves', 'Keanu', '1964-09-02', 6),
+    ('Neill', 'Sam', '1947-09-14', 8),
+    ('Brando', 'Marlon', '1924-04-03', 9),
+    ('Worthington', 'Sam', '1976-08-02', 10);
+--Insertion des utilisateurs
+INSERT INTO Utilisateurs (user_id, email, password) VALUES
+    (1, 'admin@example.com', 'motdepasse1'),  -- Admin
+    (2, 'john.doe@gmail.com', 'securepassword2'),
+    (3, 'alice.smith@yahoo.com', 'strongpassword3'),
+    (4, 'bob.jones@hotmail.com', 'mypassword4'),
+    (5, 'emily.davis@gmail.com', 'secretword5'),
+    (6, 'alex.martin@yahoo.com', 'mypassword6'),
+    (7, 'lisa.white@gmail.com', 'securepassword7'),
+    (8, 'mike.brown@hotmail.com', 'mypassword8'),
+    (9, 'sarah.jenkins@gmail.com', 'strongpassword9'),
+    (10, 'chris.anderson@yahoo.com', 'mypassword10'),
+    (11, 'olivia.miller@gmail.com', 'securepassword11'),
+    (12, 'david.hall@hotmail.com', 'mypassword12'),
+    (13, 'amy.wilson@yahoo.com', 'secretword13'),
+    (14, 'ryan.evans@gmail.com', 'mypassword14'),
+    (15, 'jessica.moore@yahoo.com', 'strongpassword15');
+
