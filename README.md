@@ -21,12 +21,12 @@ movies.sql : Contient les scripts SQL pour la création de la base de données e
 
 #utilisateurs: Informations sur les utilisateurs
 
-#films: Informations sur les films
+##films: Informations sur les films
 
-#acteurs: Informations sur les acteurs
+##acteurs: Informations sur les acteurs
 
-#realisateurs: Informations sur les réalisateurs
+##realisateurs: Informations sur les réalisateurs
 
-#performances: Relations entre acteurs
+##performances: Relations entre acteurs
 
-#favoris_utilisateurs: Les films favoris de chaque utilisateur.
+##favoris_utilisateurs: Les films favoris de chaque utilisateur.
