@@ -92,3 +92,43 @@ CREATE TABLE favoris_utilisateurs (
     FOREIGN KEY (film_id) REFERENCES films(id)
 );
 
+-- Insertion des données dans la table jointe performances
+INSERT INTO performances (acteur_id, film_id, role) VALUES
+    (1, 1, 'Cobb');
+INSERT INTO performances (acteur_id, film_id, role) VALUES
+    (2, 2, 'Bruce Wayne / Batman');
+    INSERT INTO performances (acteur_id, film_id, role) VALUES
+    (3, 3, 'Forrest Gump');
+    INSERT INTO performances (acteur_id, film_id, role) VALUES
+    (4, 4, 'Vincent Vega');
+    INSERT INTO performances (acteur_id, film_id, role) VALUES
+    (5, 5, 'Andy Dufresne');
+
+-- Insertion des données dans la table jointe favoris_utilisateurs
+INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3);
+
+INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
+    (2, 4);
+    
+INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
+    (3, 1),
+    (3, 5);
+
+-- Insertion des données dans la table jointe favoris_utilisateurs
+INSERT INTO realisation (realisateur_id, film_id) VALUES
+    (1, 1);
+    
+INSERT INTO realisation (realisateur_id, film_id) VALUES
+    (1, 2);
+    
+INSERT INTO realisation (realisateur_id, film_id) VALUES
+    (2, 3);
+    
+INSERT INTO realisation (realisateur_id, film_id) VALUES
+    (3, 4);
+    
+INSERT INTO realisation (realisateur_id, film_id) VALUES
+    (4, 5);
