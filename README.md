@@ -1,4 +1,4 @@
-# Base de données de Films
+# Base de données du streaming (légal)
 
 Ce projet consiste en une base de données pour gérer des informations sur des films, réalisateurs, acteurs et utilisateurs et y faire des requêtes.
 
