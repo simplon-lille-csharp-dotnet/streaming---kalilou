@@ -38,6 +38,18 @@ INSERT INTO films (id, titre, realisateur_id, duree, annee) VALUES
     (9,'The Godfather', 8, 175, 1972),
     (10,'Avatar', 9, 162, 2009);
 
+-- Mise à jour des données de la colonne acteur_id
+UPDATE films     SET acteur_id = 1     WHERE realisateur_id = 6;
+UPDATE films     SET acteur_id = 6     WHERE realisateur_id = 5;
+UPDATE films     SET acteur_id = 2     WHERE id = 2;
+UPDATE films     SET acteur_id = 3     WHERE realisateur_id = 2;
+UPDATE films     SET acteur_id = 9     WHERE realisateur_id = 8;
+UPDATE films     SET acteur_id = 10     WHERE realisateur_id = 9;
+UPDATE films     SET acteur_id = 8     WHERE realisateur_id = 7;
+UPDATE films     SET acteur_id = 5     WHERE realisateur_id = 4;
+UPDATE films     SET acteur_id = 4     WHERE realisateur_id = 3;
+UPDATE films     SET acteur_id = 1     WHERE id = 1;
+
 --Insertion des acteurs
 INSERT INTO Acteurs (nom, prenom, date_de_naissance, acteur_id) VALUES
     ('DiCaprio', 'Leonardo', '1974-11-11', 1),
@@ -68,6 +80,24 @@ INSERT INTO Utilisateurs (user_id, email, password) VALUES
     (14, 'ryan.evans@gmail.com', 'mypassword14'),
     (15, 'jessica.moore@yahoo.com', 'strongpassword15');
 
+--Ajout des colonnes date_creation et et date_modification pour la table utilisateurs
+    ALTER TABLE utilisateurs ADD COLUMN date_creation TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP, ADD COLUMN date_modification TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+--Ajout des colonnes date_creation et et date_modification pour la table films
+    ALTER TABLE films ADD COLUMN date_creation TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP, ADD COLUMN date_modification TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+--Ajout des colonnes date_creation et et date_modification pour la table acteurs
+    ALTER TABLE acteurs ADD COLUMN date_creation TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP, ADD COLUMN date_modification TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+--Ajout des colonnes date_creation et et date_modification pour la table realisateurs
+    ALTER TABLE realisateurs ADD COLUMN date_creation TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP, ADD COLUMN date_modification TIMESTAMP 
+    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 -- Création des tables jointes
 CREATE TABLE performances (
     acteur_id INT,
@@ -97,6 +127,26 @@ INSERT INTO performances (acteur_id, film_id, role) VALUES
     INSERT INTO performances (acteur_id, film_id, role) VALUES
     (5, 5, 'Andy Dufresne');
 
+    UPDATE performances
+    SET role_principal = true
+    WHERE acteur_id = 1 ;
+    
+    UPDATE performances
+    SET role_principal = true
+    WHERE acteur_id = 2 ;
+    
+    UPDATE performances
+    SET role_principal = true
+    WHERE acteur_id = 3 ;
+    
+    UPDATE performances
+    SET role_principal = true
+    WHERE acteur_id = 4 ;
+    
+    UPDATE performances
+    SET role_principal = true
+    WHERE acteur_id = 5 ;
+
 -- Insertion des données dans la table jointe favoris_utilisateurs
 INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
     (1, 1),
@@ -109,3 +159,53 @@ INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
 INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
     (3, 1),
     (3, 5);
+
+-- Selectionner les titres et dates de sortie des films du plus récent au plus ancien
+SELECT titre, annee FROM films ORDER BY annee DESC;
+
+-- Selectionner les noms, prénoms et âges des acteurs/actrices de plus de 30 ans dans l'ordre alphabétique (prénom d'abord, puis nom)
+SELECT nom, prenom, DATEDIFF(CURDATE(), date_de_naissance) AS age
+FROM acteurs
+WHERE DATEDIFF(CURDATE(), date_de_naissance) > 30
+ORDER BY prenom, nom;
+
+-- Sélectionner la liste des acteurs/actrices principaux pour un film donné
+SELECT acteurs.nom, acteurs.prenom, films.titre
+FROM performances
+INNER JOIN acteurs ON performances.acteur_id = acteurs.acteur_id
+INNER JOIN films ON performances.film_id = films.id
+WHERE performances.film_id = 5 AND performances.role_principal = true;
+
+-- Sélectionner la liste des films pour un acteur/actrice donné
+SELECT films.titre, films.annee, performances.role
+FROM performances
+INNER JOIN acteurs ON performances.acteur_id = acteurs.acteur_id
+INNER JOIN films ON performances.film_id = films.id
+WHERE acteurs.nom = 'DiCaprio' AND acteurs.prenom = 'Leonardo';
+
+-- Ajout d'un film
+INSERT INTO films (id, titre, realisateur_id, duree, annee)
+VALUES (11, 'Tenet', 1, 150, 2020);
+
+-- Ajout d'un acteur/actrice
+INSERT INTO acteurs (acteur_id, nom, prenom, date_de_naissance)
+VALUES (11, 'Doe', 'Jane', '1990-01-01');
+
+--Insertion de l'acteur/actrice dans la table des performances
+INSERT INTO performances (acteur_id, film_id, role_principal, role)
+VALUES (11, 11, false, 'Personnage secondaire');
+
+-- Modification d'un film
+UPDATE filmsvSET duree = 160 WHERE id = 11;
+
+-- Suppression des performances associées à l'acteur
+DELETE FROM performances WHERE acteur_id = 11;
+
+-- Suppression de l'acteur
+DELETE FROM acteurs WHERE acteur_id = 11;
+
+-- Affichage des 3 derniers acteurs/actrices ajouté(e)s
+SELECT *
+FROM acteurs
+ORDER BY date_creation DESC
+LIMIT 3;
