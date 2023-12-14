@@ -15,18 +15,22 @@ Ce projet consiste en une base de données pour gérer des informations sur des 
 
 4. Configurez les paramètres de connexion à la base de données dans le script ou le fichier de configuration approprié.
 
-##Structure du Projet
-#Readme.md : Le fichier README est conçu pour fournir des informations essentielles aux utilisateurs
-movies.sql : Contient les scripts SQL pour la création de la base de données et l'insertion de données initiales.
+## Structure du Projet
+**Readme.md :** Le fichier README est conçu pour fournir des informations essentielles aux utilisateurs
+**movies.sql :** Contient les scripts SQL pour la création de la base de données et l'insertion de données initiales.
 
-#utilisateurs: Informations sur les utilisateurs
 
-##films: Informations sur les films
+## Schéma de la Base de Données
+Le schéma de la base de données comprend les tables suivantes :
 
-##acteurs: Informations sur les acteurs
+**utilisateurs:** Informations sur les utilisateurs
 
-##realisateurs: Informations sur les réalisateurs
+**films:** Informations sur les films
 
-##performances: Relations entre acteurs
+**acteurs:** Informations sur les acteurs
 
-##favoris_utilisateurs: Les films favoris de chaque utilisateur.
+**realisateurs:** Informations sur les réalisateurs
+
+**performances:** Relations entre acteurs
+
+**favoris_utilisateurs:** Les films favoris de chaque utilisateur.
