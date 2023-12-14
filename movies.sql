@@ -78,13 +78,6 @@ CREATE TABLE performances (
     FOREIGN KEY (film_id) REFERENCES films(id)
 );
 
-CREATE TABLE realisation (
-    realisateur_id INT,
-    film_id INT,
-    FOREIGN KEY (realisateur_id) REFERENCES realisateurs(realisateur_id),
-    FOREIGN KEY (film_id) REFERENCES films(id)
-);
-
 CREATE TABLE favoris_utilisateurs (
     user_id INT,
     film_id INT,
@@ -116,19 +109,3 @@ INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
 INSERT INTO favoris_utilisateurs (user_id, film_id) VALUES
     (3, 1),
     (3, 5);
-
--- Insertion des données dans la table jointe favoris_utilisateurs
-INSERT INTO realisation (realisateur_id, film_id) VALUES
-    (1, 1);
-    
-INSERT INTO realisation (realisateur_id, film_id) VALUES
-    (1, 2);
-    
-INSERT INTO realisation (realisateur_id, film_id) VALUES
-    (2, 3);
-    
-INSERT INTO realisation (realisateur_id, film_id) VALUES
-    (3, 4);
-    
-INSERT INTO realisation (realisateur_id, film_id) VALUES
-    (4, 5);
